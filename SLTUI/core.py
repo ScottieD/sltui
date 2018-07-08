@@ -2,19 +2,21 @@ import curses
 from curses import wrapper
 import sys
 
-def main(stdscr):
-    home()
+
+stdscr = curses.initscr()
+
+
+def main(screen):
+    home(screen)
 
 
 def getconfig():
     return
 
 
-def home():
+def home(screen):
     while True:
-        # Clear screen
-        #stdscr.clear()
-        #stdscr.nodelay(True)
+        screen.nodelay(True)
 
         #init curses object
         interface = curses.initscr()
@@ -23,13 +25,11 @@ def home():
 
         #refresh screen
         interface.refresh()
-        #interface.getch()
 
-        #curses.endwin()
 
 if __name__ == "__main__":
     try:
-        wrapper(main)
+        wrapper(main(stdscr))
     except KeyboardInterrupt:
         sys.exit(1)
 sys.exit(1)
