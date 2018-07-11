@@ -1,0 +1,32 @@
+name: sltui # check to see if it's available
+version: '1.0+git' # check versioning
+summary: NCurses-based tool for SL API. # 79 char long summary
+description: |
+    An ncurses interface for managing various SoftLayer products and services.
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs
+
+apps:
+  sltui:
+    command: sltui
+    environment: 
+      LC_ALL: C.UTF-8
+    plugs:
+      - home
+      - network
+      - network-bind
+     
+parts: 
+  my-part:
+    source: https://github.com/ScottieD/sltui
+    source-type: git
+    plugin: python
+    python-version: python3
+    
+    build-packages:
+      - python3
+      - lib64ncurses5-dev
+      
+    stage-packages:
+      - python3
+      - lib64ncurses5-dev
